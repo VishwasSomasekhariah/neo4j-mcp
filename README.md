@@ -49,10 +49,10 @@ The server reads Neo4j connection details from environment variables:
 | `NEO4J_USER` | `neo4j` | Neo4j username |
 | `NEO4J_PASSWORD` | *(required)* | Neo4j password |
 
-Copy `.env.example` to `.env` and fill in your values:
+Copy `configs/examples/.env.example` to `.env` and fill in your values:
 
 ```bash
-cp .env.example .env
+cp configs/examples/.env.example .env
 # then export before running:
 export $(grep -v '^#' .env | xargs)
 ```
@@ -72,7 +72,7 @@ Clients that connect to this server (e.g. `project-analyzer`) use a JSON config 
 }
 ```
 
-See [`neo4j_config.example.json`](neo4j_config.example.json) for a ready-to-use template.
+See [`configs/examples/neo4j_config.example.json`](configs/examples/neo4j_config.example.json) for a ready-to-use template.
 
 Pass this file to the CLI with `--config-file`:
 
@@ -154,8 +154,10 @@ neo4j-mcp/
 │           └── tools.py                   # All MCP tool implementations
 ├── tests/
 │   └── test_neo4j_mcp_client.py           # Integration test / example client
-├── neo4j_config.example.json             # Example MCP client config
-├── .env.example                           # Example environment variable config
+├── configs/
+│   └── examples/
+│       ├── neo4j_config.example.json      # Example MCP client config
+│       └── .env.example                   # Example environment variable config
 ├── pyproject.toml
 ├── requirements.txt
 └── uv.lock                                # Pinned dependency lockfile
