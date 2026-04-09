@@ -123,7 +123,7 @@ async with Client(transport=SSETransport("http://localhost:8100/sse")) as client
     print("Neo4j version:", data["version"])
 ```
 
-See [`test_neo4j_mcp_client.py`](test_neo4j_mcp_client.py) for a comprehensive integration test covering all tools.
+See [`tests/test_neo4j_mcp_client.py`](tests/test_neo4j_mcp_client.py) for a comprehensive integration test covering all tools.
 
 ## Available tools
 
@@ -153,7 +153,7 @@ neo4j-mcp/
 │       └── neo4j_memory/
 │           └── tools.py                   # All MCP tool implementations
 ├── tests/
-├── test_neo4j_mcp_client.py               # Integration test / example client
+│   └── test_neo4j_mcp_client.py           # Integration test / example client
 ├── neo4j_config.example.json             # Example MCP client config
 ├── .env.example                           # Example environment variable config
 ├── pyproject.toml
