@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neo4j-mcp-server"
+version = "0.1.0"
+description = "MCP Server for Neo4j Code Property Graph operations"
+readme = "README.md"
+requires-python = ">=3.12.8,<3.13"
+license = {text = "MIT"}
+authors = [
+    {name = "VishwasSomasekhariah"}
+]
+dependencies = [
+    "uvicorn==0.34.1",
+    "starlette==0.46.2",
+    "PyYAML==6.0.2",
+    "neo4j==5.16.0",
+    "fastmcp==2.13.0.2",
+]
+
+[project.scripts]
+neo4j-mcp-server = "neo4j_mcp_server.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["neo4j_mcp_server*"]
