@@ -5,7 +5,7 @@ import json
 import asyncio
 import uuid
 from typing import Dict, Any, List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from neo4j import AsyncGraphDatabase, AsyncDriver
 from fastmcp import Context
 
@@ -62,7 +62,7 @@ class Neo4jGraphService:
             await self.connect()
 
         logger.debug("Running Cypher query:\n%s\nwith params: %r", query, params)
-        start = datetime.utcnow()
+        start = datetime.now(timezone.utc)
         async with self.driver.session() as session:
             async def work(tx):
                 result = await tx.run(query, params or {})
@@ -73,11 +73,11 @@ class Neo4jGraphService:
 
             try:
                 records = await session.execute_write(work)
-                elapsed = (datetime.utcnow() - start).total_seconds()
+                elapsed = (datetime.now(timezone.utc) - start).total_seconds()
                 logger.debug("Query returned %d records (%.3fs)", len(records), elapsed)
                 return records
             except Exception as e:
-                logger.error("Cypher error after %.3fs: %s", (datetime.utcnow()-start).total_seconds(), e, exc_info=True)
+                logger.error("Cypher error after %.3fs: %s", (datetime.now(timezone.utc)-start).total_seconds(), e, exc_info=True)
                 raise
 
 
