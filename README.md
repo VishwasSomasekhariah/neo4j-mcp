@@ -16,25 +16,24 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server that e
 
 ## Requirements
 
-- Python >= 3.12.8, < 3.13
+- Python >= 3.12
 - A running Neo4j 5.x instance (local or remote)
 
 ## Installation
 
-### With uv (recommended — exact lockfile reproducibility)
+### As a tool (recommended for end users)
+
+```bash
+uv tool install git+https://github.com/VishwasSomasekhariah/neo4j-mcp.git
+```
+
+### For development
 
 ```bash
 git clone https://github.com/VishwasSomasekhariah/neo4j-mcp.git
 cd neo4j-mcp
 uv sync
-```
-
-### With pip
-
-```bash
-git clone https://github.com/VishwasSomasekhariah/neo4j-mcp.git
-cd neo4j-mcp
-pip install -e .
+pip install -e ".[dev]"
 ```
 
 ## Configuration
@@ -45,9 +44,9 @@ The server reads Neo4j connection details from environment variables:
 
 | Variable | Default | Description |
 |---|---|---|
-| `NEO4J_URI` | `bolt://host.docker.internal:7687` | Bolt URI of the Neo4j instance |
+| `NEO4J_URI` | `bolt://localhost:7687` | Bolt URI of the Neo4j instance |
 | `NEO4J_USER` | `neo4j` | Neo4j username |
-| `NEO4J_PASSWORD` | *(required)* | Neo4j password |
+| `NEO4J_PASSWORD` | `tree-sitter` | Neo4j password — **change this in production** |
 
 Copy `configs/examples/.env.example` to `.env` and fill in your values:
 
